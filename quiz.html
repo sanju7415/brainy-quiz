@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IQ Test Challenge</title>
+
+<style>
+    body{
+
+    margin:0;
+
+    font-family:Arial,sans-serif;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:100vh;
+
+    background:
+    linear-gradient(
+    135deg,
+    #020617,
+    #0f172a,
+    #1e3a8a,
+    #312e81
+    );
+
+    background-size:
+    400% 400%;
+
+    animation:
+    bgMove 12s ease infinite;
+
+}
+@keyframes bgMove {
+    
+    0% {
+        background-position: 0% 50%;
+    }
+    
+    50% {
+        background-position: 100% 50%;
+    }
+    
+    100% {
+        background-position: 0% 50%;
+    }
+    
+}
+
+  .container {
+    width: 90%;
+    max-width: 650px;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .1);
+    padding: 25px;
+    border-radius: 24px;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, .4);
+    backdrop-filter: blur(20px);
+}
+    h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+h2 {
+    text-align: center;
+    line-height: 1.6;
+    color: #f8fafc;
+}
+
+p {
+    color: #cbd5e1;
+}
+
+    button{
+    border:none;
+    outline:none;
+    cursor:pointer;
+
+    padding:12px 22px;
+
+    border-radius:14px;
+
+    font-size:15px;
+    font-weight:600;
+
+    transition:.3s;
+
+    color:white;
+
+    background:
+    linear-gradient(
+    135deg,
+    #3b82f6,
+    #8b5cf6
+    );
+
+    box-shadow:
+    0 5px 15px
+    rgba(59,130,246,.35);
+}
+
+button:hover{
+    transform:
+    translateY(-3px);
+
+    box-shadow:
+    0 10px 20px
+    rgba(59,130,246,.4);
+}
+
+button:active{
+    transform:scale(.95);
+}
+
+.start-btn{
+
+    width:100%;
+
+    background:
+    linear-gradient(
+    135deg,
+    #22c55e,
+    #14b8a6
+    );
+
+    font-size:17px;
+
+}
+
+    .start-btn {
+        background: #22c55e;
+        color: white;
+    }
+
+    .option {
+        display: block;
+        width: 100%;
+        margin: 8px 0;
+        padding: 10px;
+        background: #334155;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .option:hover {
+        background: #475569;
+    }
+
+    .correct {
+        background: #16a34a !important;
+    }
+
+    .wrong {
+        background: #dc2626 !important;
+    }
+
+    .controls {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .progress {
+        margin-bottom: 10px;
+        font-size: 14px;
+    }
+
+    .hidden {
+        display: none;
+    }
+    
+.iq-box{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+#iqEmoji{
+    font-size:60px;
+    transition:.4s;
+}
+
+.iq-bar{
+    width:100%;
+    height:15px;
+    background:#334155;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+#iqFill{
+    width:0%;
+    height:100%;
+    background:linear-gradient(
+        90deg,
+        #22c55e,
+        #06b6d4,
+        #8b5cf6
+    );
+    transition:.5s;
+}
+
+#question{
+
+    padding:15px;
+
+    background:
+    rgba(255,255,255,.05);
+
+    border-radius:15px;
+
+    margin-bottom:15px;
+
+    border:1px solid
+    rgba(255,255,255,.08);
+
+    white-space:pre-line;
+}
+
+#timer {
+    color: #facc15;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.timer-box{
+
+    display:flex;
+
+    justify-content:center;
+
+    margin-top:15px;
+
+}
+
+#timer{
+
+    display:inline-block;
+
+    padding:12px 24px;
+
+    border-radius:50px;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    letter-spacing:2px;
+
+    color:#fff;
+
+    background:
+    linear-gradient(
+    135deg,
+    #f59e0b,
+    #ef4444
+    );
+
+    box-shadow:
+    0 0 20px
+    rgba(239,68,68,.4);
+
+    animation:
+    pulseTimer 1.5s infinite;
+}
+
+@keyframes pulseTimer{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.05);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+.timer-box{
+    display:flex;
+    justify-content:center;
+    margin-top:15px;
+}
+
+#timer{
+
+    display:inline-block;
+
+    padding:12px 25px;
+
+    border-radius:50px;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:white;
+
+    background:
+    linear-gradient(
+    135deg,
+    #f59e0b,
+    #f97316
+    );
+
+    box-shadow:
+    0 0 20px
+    rgba(249,115,22,.5);
+
+    transition:.3s;
+}
+
+@keyframes pulseTimer{
+
+0%{
+transform:scale(1);
+}
+
+50%{
+transform:scale(1.08);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div id="startScreen">
+        <h1>🧠 IQ Test Challenge</h1>
+<p>Test your logic, math, and reasoning skills</p>
+
+        
+<button class="start-btn" onclick="startQuiz()">Start IQ Test</button>
+    </div>
+
+<div id="quizScreen" class="hidden">
+    
+    <div class="iq-box">
+        
+        <div id="iqEmoji">🙂</div>
+        
+        <h3>
+            IQ Level:
+            <span id="iqValue">80</span>
+        </h3>
+        
+        <div class="iq-bar">
+            <div id="iqFill"></div>
+        </div>
+        
+    </div>
+    
+    <div class="progress" id="progress"></div>
+    
+    <h2 id="question"></h2>
+    
+    <div id="options"></div>
+    
+    <div class="controls">
+        <button onclick="prevQuestion()">Previous</button>
+        <button onclick="nextQuestion()">Next</button>
+    </div>
+    
+<div class="timer-box">
+    
+    <span id="timer">
+        ⏳ 02:00
+    </span>
+    
+</div>
+    
+</div>
+
+<div id="resultScreen" class="hidden">
+<div class="iq-box">
+    
+    <div id="iqEmoji">🙂</div>
+    
+    <h3>IQ Level: <span id="iqValue">80</span></h3>
+    
+    <div class="iq-bar">
+        <div id="iqFill"></div>
+    </div>
+    
+</div>
+    
+        <h1>🎯 Your Result</h1>
+        <h2 id="scoreText"></h2>
+        <p id="iqLevel"></p>
+        <button onclick="location.reload()">Restart</button>
+    </div>
+
+</div>
+
+<script>
+const questions = [
+    
+    {
+        q: `What comes next: 1, 4, 9, 16, 25, ?
+
+अगली संख्या क्या होगी: 1, 4, 9, 16, 25, ?`,
+        
+        options: ["30", "36", "49", "64"],
+        answer: 1
+    },
+    
+    {
+        q: `Find the odd one out:
+
+अलग संख्या चुनिए:`,
+        
+        options: ["64", "125", "216", "243"],
+        answer: 3
+    },
+    
+    {
+        q: `If CAT = 24, DOG = 26, then BAT = ?
+
+यदि CAT = 24, DOG = 26 है, तो BAT = ?`,
+        
+        options: ["21", "23", "25", "27"],
+        answer: 0
+    },
+{
+    q: `What comes next: 2, 3, 5, 8, 13, ?
+
+अगली संख्या क्या होगी: 2, 3, 5, 8, 13, ?`,
+    
+    options: ["18", "20", "21", "22"],
+    answer: 2
+},
+
+{
+    q: `A clock shows 3:15. What is the angle between the hands?
+
+घड़ी में 3:15 बजे हैं। दोनों सुइयों के बीच कोण कितना होगा?`,
+    
+    options: ["0°", "7.5°", "15°", "22.5°"],
+    answer: 1
+},
+
+{
+    q: `Which number replaces ? : 3, 6, 12, 24, ?
+
+खाली स्थान में कौन सी संख्या आएगी? 3, 6, 12, 24, ?`,
+    
+    options: ["36", "42", "48", "60"],
+    answer: 2
+},
+
+{
+    q: `If some roses are flowers and all flowers are plants, then:
+
+यदि कुछ गुलाब फूल हैं और सभी फूल पौधे हैं, तो:`,
+    
+    options: [
+        "All roses are plants",
+        "No roses are plants",
+        "Some plants are roses",
+        "Cannot say"
+    ],
+    
+    answer: 0
+},
+
+{
+    q: `Find the missing letter: A, D, G, J, ?
+
+गायब अक्षर खोजिए: A, D, G, J, ?`,
+    
+    options: ["L", "M", "N", "O"],
+    answer: 1
+},
+
+{
+    q: `What comes next: 121, 144, 169, ?
+
+अगली संख्या क्या होगी: 121, 144, 169, ?`,
+    
+    options: ["196", "225", "256", "289"],
+    answer: 0
+},
+
+{
+    q: `If yesterday was Monday, what day will it be 3 days after tomorrow?
+
+यदि कल सोमवार था, तो परसों के 3 दिन बाद कौन सा दिन होगा?`,
+    
+    options: ["Thursday", "Friday", "Saturday", "Sunday"],
+    answer: 1
+},
+
+{
+    q: `Which number does not belong?
+
+कौन सी संख्या अलग है?`,
+    
+    options: ["11", "13", "17", "21"],
+    answer: 3
+},
+
+{
+    q: `A farmer has 17 sheep. All but 9 die. How many are left?
+
+एक किसान के पास 17 भेड़ें हैं। 9 को छोड़कर बाकी सब मर गईं। कितनी बचीं?`,
+    
+    options: ["8", "9", "17", "0"],
+    answer: 1
+},
+
+{
+    q: `Find the next term: 1, 8, 27, 64, ?
+
+अगला पद खोजिए: 1, 8, 27, 64, ?`,
+    
+    options: ["81", "100", "125", "216"],
+    answer: 2
+},
+
+{
+    q: `If TRAIN = 82, then PLANE = ?
+
+यदि TRAIN = 82 है, तो PLANE = ?`,
+    
+    options: ["52", "56", "60", "64"],
+    answer: 2
+},
+
+
+    
+];
+
+let answered = [];
+let selectedAnswers = [];
+
+let current = 0;
+let score = 0;
+let time = 120;
+
+let timer;
+
+
+function startQuiz() {
+    
+    document.getElementById(
+        "startScreen"
+    ).classList.add("hidden");
+    
+    document.getElementById(
+        "quizScreen"
+    ).classList.remove("hidden");
+    
+    loadQuestion();
+    
+    startTimer();
+    
+}
+function loadQuestion() {
+    
+    let q = questions[current];
+    
+    document.getElementById(
+            "progress"
+        ).innerText =
+        `Question ${current+1} / ${questions.length}`;
+    
+    document.getElementById(
+        "question"
+    ).innerText = q.q;
+    
+    let optionsHTML = "";
+    
+    q.options.forEach((opt, i) => {
+        
+        optionsHTML +=
+            `<div class="option"
+        onclick="selectAnswer(${i})">
+
+        ${opt}
+
+        </div>`;
+        
+    });
+    
+    document.getElementById(
+        "options"
+    ).innerHTML = optionsHTML;
+    
+}
+
+function selectAnswer(i) {
+    
+    if (answered[current]) return;
+    
+    answered[current] = true;
+    
+    selectedAnswers[current] = i;
+    
+    let options =
+        document.querySelectorAll(".option");
+    
+    let correct =
+        questions[current].answer;
+    
+    options.forEach((opt, idx) => {
+        
+        if (idx === correct)
+            opt.classList.add("correct");
+        
+        else if (idx === i)
+            opt.classList.add("wrong");
+        
+        opt.style.pointerEvents = "none";
+        
+    });
+    
+    if (i === correct) {
+        
+        score++;
+        
+        iqLevel += 5;
+        
+        document.getElementById(
+            "iqValue"
+        ).innerText = iqLevel;
+        
+        let fill =
+            ((score / questions.length) * 100);
+        
+        document.getElementById(
+                "iqFill"
+            ).style.width =
+            fill + "%";
+        
+        const emoji =
+            document.getElementById(
+                "iqEmoji"
+            );
+        
+        if (score <= 2) {
+            
+            emoji.innerText = "🙂";
+            
+        }
+        
+        else if (score <= 4) {
+            
+            emoji.innerText = "😊";
+            
+        }
+        
+        else if (score <= 6) {
+            
+            emoji.innerText = "😎";
+            
+        }
+        
+        else if (score <= 8) {
+            
+            emoji.innerText = "🧠";
+            
+        }
+        
+        else {
+            
+            emoji.innerText = "👑";
+            
+        }
+        
+    }
+    
+}
+function nextQuestion() {
+    
+    if (!answered[current]) {
+        
+        alert(
+            "🖐🏻 Please select an answer first!"
+        );
+        
+        return;
+    }
+    
+    if (current < questions.length - 1) {
+        
+        current++;
+        
+        loadQuestion();
+        
+    }
+    else {
+        
+        showResult();
+        
+    }
+    
+}
+
+function prevQuestion(){
+    if(current > 0){
+        current--;
+        loadQuestion();
+    }
+}
+
+function startTimer() {
+    
+    timer = setInterval(() => {
+        
+        let min =
+            Math.floor(time / 60);
+        
+        let sec =
+            time % 60;
+        
+        const timerEl =
+            document.getElementById(
+                "timer"
+            );
+        
+        timerEl.innerText =
+            `⏳ ${min}:${sec < 10 ? "0" + sec : sec}`;
+        
+        if (time <= 30) {
+            
+            timerEl.style.background =
+                "linear-gradient(135deg,#dc2626,#7f1d1d)";
+            
+            timerEl.style.boxShadow =
+                "0 0 25px rgba(220,38,38,.7)";
+            
+            timerEl.style.animation =
+                "pulseTimer .6s infinite";
+            
+        }
+        
+        time--;
+        
+        if (time < 0) {
+            
+            clearInterval(timer);
+            
+            showResult();
+            
+        }
+        
+    }, 1000);
+    
+}
+function showResult() {
+    
+    clearInterval(timer);
+    
+    document.getElementById(
+        "quizScreen"
+    ).classList.add("hidden");
+    
+    document.getElementById(
+        "resultScreen"
+    ).classList.remove("hidden");
+    
+    document.getElementById(
+            "scoreText"
+        ).innerText =
+        `Score: ${score} / ${questions.length}`;
+    
+    let iqText = "";
+    
+    if (score <= 4) {
+        
+        iqText =
+            "🌱 Beginner";
+        
+    }
+    
+    else if (score <= 8) {
+        
+        iqText =
+            "😎 Smart";
+        
+    }
+    
+    else if (score <= 12) {
+        
+        iqText =
+            "🧠 Genius";
+        
+    }
+    
+    else {
+        
+        iqText =
+            "👑 Master";
+        
+    }
+    
+    document.getElementById(
+            "iqLevel"
+        ).innerHTML =
+        
+        `
+    <h2>${iqText}</h2>
+    `;
+    
+}
+
+</script>
+
+</body>
+</html>
